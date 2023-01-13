@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "tourneymod115",
+  "version": "${version}",
+
+  "name": "Tourney Mod 1.15",
+  "description": "A general tournament mod for 1.15.",
+  "authors": [
+    "pixfumy",
+    "DuncanRuns"
+  ],
+  "contact": {
+    "homepage": "https://github.com/pixfumy"
+  },
+  "accessWidener" : "tourneymod115.accesswidener",
+
+  "license": "CC0-1.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.pixfumy.tourneymod115.TourneyMod115"
+    ]
+  },
+  "mixins": [
+    "tourneymod115.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "minecraft": "1.15.2",
+    "java": ">=16"
+  }
+}
