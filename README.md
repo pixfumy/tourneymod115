@@ -7,6 +7,7 @@ This is a general tournament mod for 1.15. Implementation is based on Seedcycle,
 - Zero cycles are also possible on more seeds. Node height ranges from 0-5 blocks above the minimum height, instead of the vanilla range of 0-20. the 1/8 chance of the dragon picking a horizontal node is now 1/16.
 - Removes 1/3, pearl trade is guaranteed when leveling up a cleric
 - Golems always drop 4 iron
+- No mining fatigue from elder guardians
 - Dragon always perches after 2.5 minutes after entering end, resets on relog.
 - Removes mob spawns in temples during the daytime 
 
