@@ -12,6 +12,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.pixfumy.tourneymod115.ILevelProperties;
 import net.pixfumy.tourneymod115.RNGStreamGenerator;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +27,7 @@ public class BlazeDropsMixin extends HostileEntity {
 
     @Override
     protected void dropLoot(DamageSource source, boolean causedByPlayer) {
-        RNGStreamGenerator rngStreamGenerator = ((ILevelProperties)this.getEntityWorld().getLevelProperties()).getRNGStreamGenerator();
+        RNGStreamGenerator rngStreamGenerator = ((ILevelProperties)this.getEntityWorld().getServer().getWorld(DimensionType.OVERWORLD).getLevelProperties()).getRNGStreamGenerator();
         Identifier identifier = this.getLootTable();
         LootTable lootTable = this.world.getServer().getLootManager().getSupplier(identifier);
         LootContext.Builder builder = (new LootContext.Builder((ServerWorld)this.world)).setRandom(new Random(rngStreamGenerator.getAndUpdateSeed("blazeRodSeed"))).put(LootContextParameters.THIS_ENTITY, this).put(LootContextParameters.POSITION, new BlockPos(this)).put(LootContextParameters.DAMAGE_SOURCE, source).putNullable(LootContextParameters.KILLER_ENTITY, source.getAttacker()).putNullable(LootContextParameters.DIRECT_KILLER_ENTITY, source.getSource());
