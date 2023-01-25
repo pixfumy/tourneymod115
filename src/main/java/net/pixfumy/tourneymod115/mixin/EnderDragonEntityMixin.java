@@ -31,7 +31,7 @@ public abstract class EnderDragonEntityMixin
             PhaseType.SITTING_ATTACKING,
             PhaseType.DYING
     );
-    private static final boolean DO_NATURAL_PERCHES = true;
+    private static final boolean DO_NATURAL_PERCHES = false;
     @Shadow
     @Final
     private PhaseManager phaseManager;
