@@ -6,6 +6,7 @@ import net.minecraft.entity.boss.dragon.phase.PhaseManager;
 import net.minecraft.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -44,7 +45,10 @@ public abstract class EnderDragonEntityMixin
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void setPerchTime(EntityType entityType, World world, CallbackInfo ci) {
-        perchTime = 600 + (int) (Math.abs(world.getSeed() ^ 1247012419742L) % 1800); // seed-based random time between 0:30 and 2:00
+        if (!world.isClient) {
+            perchTime = 3600; // 3 minute forced perch even though the dragon's random is standardized, just to avoid any Illumina 1.14 tournament nonsense
+            this.random.setSeed(world.getServer().getWorld(DimensionType.OVERWORLD).getSeed() ^ -8422260959436812016L);
+        }
     }
 
     @Inject(method = "tickMovement", at = @At("TAIL"))
