@@ -18,7 +18,7 @@ import java.util.Map;
 public abstract class LevelPropertiesMixin implements ILevelProperties {
     @Shadow
     private long randomSeed;
-    private final RNGStreamGenerator rngStreamGenerator = new RNGStreamGenerator();
+    private RNGStreamGenerator rngStreamGenerator;
     @Override
     public RNGStreamGenerator getRNGStreamGenerator(){
         return this.rngStreamGenerator;
@@ -26,7 +26,7 @@ public abstract class LevelPropertiesMixin implements ILevelProperties {
 
     @Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/nbt/CompoundTag;Lcom/mojang/datafixers/DataFixer;ILnet/minecraft/nbt/CompoundTag;)V")
     public void initInject(CompoundTag compoundTag, DataFixer dataFixer, int i, CompoundTag compoundTag2, CallbackInfo ci) {
-        rngStreamGenerator.init(this.randomSeed);
+        rngStreamGenerator = new RNGStreamGenerator(this.randomSeed);
         for (Map.Entry<String, Long> pair: rngStreamGenerator.entrySet()) {
             String id = pair.getKey();
             if (compoundTag.contains(id)) {
@@ -40,6 +40,9 @@ public abstract class LevelPropertiesMixin implements ILevelProperties {
 
     @Inject(at = @At("HEAD"), method = "updateProperties")
     private void writeSeedsToNBT(CompoundTag worldNBT, CompoundTag playerNBT, CallbackInfo ci) {
+        if (rngStreamGenerator == null) {
+            rngStreamGenerator = new RNGStreamGenerator(this.randomSeed);
+        }
         for (Map.Entry<String, Long> pair: rngStreamGenerator.entrySet()) {
             String id = pair.getKey();
             worldNBT.putLong(id, rngStreamGenerator.getSeed(id));

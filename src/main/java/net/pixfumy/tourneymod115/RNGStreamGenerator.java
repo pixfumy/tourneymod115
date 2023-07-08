@@ -10,7 +10,7 @@ import java.util.Set;
 public class RNGStreamGenerator {
     protected HashMap<String, Long> rngSeeds = new HashMap();
 
-    public void init(long worldSeed) {
+    public RNGStreamGenerator(long worldSeed) {
         /*  abstracts some of the standardization into this HashMap. To add a new standardized source of RNG, put your entries
             into this map, use your world's RNGStreamGenerator in a mixin, and then update tellPlayerCurrentRates if you want to.
         */
@@ -58,7 +58,7 @@ public class RNGStreamGenerator {
     public static void tellPlayerCurrentRates(World world) {
         long seed = world.getSeed();
         RNGStreamGenerator main = ((ILevelProperties)world.getLevelProperties()).getRNGStreamGenerator();
-        RNGStreamGenerator dummy = new RNGStreamGenerator();
+        RNGStreamGenerator dummy = new RNGStreamGenerator(seed);
         dummy.rngSeeds = new HashMap() {
             {
                 put("blazeRodSeed", main.getSeed("blazeRodSeed"));
