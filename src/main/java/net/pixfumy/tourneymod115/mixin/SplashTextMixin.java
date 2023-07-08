@@ -14,12 +14,8 @@ import java.util.Locale;
 
 @Mixin(SplashTextResourceSupplier.class)
 public class SplashTextMixin {
-    /**
-     * @author Pixfumy
-     * @reason Take priority over any other mods changing this
-     */
     @Inject(method = "get", at = @At("HEAD"), cancellable = true)
     private void getSplash(CallbackInfoReturnable<String> cir) {
-        cir.setReturnValue("Tourney Mod 1.15");
+        cir.setReturnValue("Minecraft Relay Cup 3");
     }
 }
