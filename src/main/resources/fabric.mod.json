@@ -3,7 +3,7 @@
   "id": "tourneymod115",
   "version": "${version}",
 
-  "name": "Tourney Mod 1.15",
+  "name": "${archivesBaseName}",
   "description": "A general tournament mod for 1.15.",
   "authors": [
     "pixfumy",
@@ -14,7 +14,7 @@
   },
   "accessWidener" : "tourneymod115.accesswidener",
 
-  "license": "CC0-1.0",
+  "license": "LGPL-3.0",
 
   "environment": "*",
   "entrypoints": {
@@ -29,6 +29,6 @@
   "depends": {
     "fabricloader": ">=0.12.12",
     "minecraft": "1.15.2",
-    "java": ">=16"
+    "java": ">=8"
   }
 }
