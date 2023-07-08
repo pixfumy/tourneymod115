@@ -6,6 +6,7 @@
   "client": [
     "BlazeDropsMixin",
     "BlazeSpawnsMixin",
+    "CommandManagerMixin",
     "FlintMixin",
     "EyeOfEnderMixin",
     "EnderDragonEntityMixin",
