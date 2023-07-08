@@ -21,7 +21,6 @@ public class TempleMobSpawnMixin {
     @Inject(method = "canMobSpawn", at = @At("HEAD"), cancellable = true)
     private static void checkIfInTemple(EntityType<? extends MobEntity> type, IWorld world, SpawnType spawnType, BlockPos pos, Random random, CallbackInfoReturnable<Boolean> cir) {
         if (Feature.DESERT_PYRAMID.isInsideStructure(world, pos)) {
-            TourneyMod115.LOGGER.info("stopping mob spawn");
             cir.cancel();
         }
     }
