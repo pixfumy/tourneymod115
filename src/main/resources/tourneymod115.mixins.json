@@ -15,6 +15,7 @@
     "IronGolemDropsMixin",
     "TempleMobSpawnMixin",
     "LevelPropertiesMixin",
+    "SplashTextMixin",
     "TradeOffersMixin",
     "ElderGuardianEntityMixin"
   ],
